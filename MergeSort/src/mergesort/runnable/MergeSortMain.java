@@ -1,8 +1,10 @@
-package src.mergesort;
+package src.mergesort.runnable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MergeSortMain {
 
@@ -16,18 +18,15 @@ public class MergeSortMain {
         }
 
         System.out.println("Unsorted List");
-        for( int  i = 0; i < list.size(); i++) {
-            System.out.print(list.get(i) + " ");
+        for (Integer integer : list) {
+            System.out.print(integer + " ");
         }
         System.out.println();
 
-        MergeSort mergeSort = new MergeSort();
-        List<Integer> sortedList = mergeSort.mergeSort(list, 0, list.size() -1);
+        MergeSort mergeSort = new MergeSort(list);
 
-        System.out.println("Sorted List");
-        for( int i = 0; i < sortedList.size(); i++) {
-            System.out.print(sortedList.get(i) + " ");
-        }
-        System.out.println();
+        ExecutorService executor = Executors.newFixedThreadPool(5);
+        executor.execute(new MergeSort(list));
+        executor.shutdown();
     }
 }

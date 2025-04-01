@@ -1,9 +1,22 @@
-package src.mergesort;
+package src.mergesort.runnable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MergeSort {
+/**
+ * Merge Sort is a divide and conquer algorithm that sorts an array by recursively
+ * dividing it into two halves, sorting each half, and then merging the sorted halves.
+ * This implementation uses a thread pool to execute the sorting in parallel.
+ *
+ * Only single thread is used to sort the list since we are using Runnable.
+ */
+public class MergeSort implements Runnable{
+
+    List<Integer> list;
+
+    MergeSort(List<Integer> list) {
+        this.list = list;
+    }
 
     List<Integer> merge(List<Integer> list, int startIndex, int endIndex, int mid) {
         List<Integer> mergeList = new ArrayList<>();
@@ -38,10 +51,22 @@ public class MergeSort {
     }
 
     List<Integer> mergeSort(List<Integer> list, int startIndex, int endIndex) {
+        System.out.println(Thread.currentThread().getName());
         if(startIndex >= endIndex) return list;
         int mid = (startIndex + endIndex) / 2;
         mergeSort(list, startIndex, mid);
         mergeSort(list, mid + 1, endIndex);
         return merge(list, startIndex, endIndex, mid);
+    }
+
+    @Override
+    public void run() {
+        this.mergeSort(list, 0, list.size() - 1);
+
+        System.out.println("Sorted List");
+        for (Integer integer : this.list) {
+            System.out.print(integer + " ");
+        }
+        System.out.println();
     }
 }
