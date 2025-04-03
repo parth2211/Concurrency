@@ -13,7 +13,7 @@ public class Subtractor implements Runnable {
         for (int i = 0; i < 100; i++) {
             try{
                 Thread.sleep(5L);
-                value.value -= 1;
+                value.setValue(value.getValue() - 1);
             } catch (InterruptedException e) {
 
             }

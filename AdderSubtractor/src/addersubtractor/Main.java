@@ -15,7 +15,7 @@ public class Main {
         executorService.shutdown();
         executorService.awaitTermination(1L, TimeUnit.MINUTES);
 
-        System.out.println(value.value);
+        System.out.println(value.getValue());
 
     }
 }
