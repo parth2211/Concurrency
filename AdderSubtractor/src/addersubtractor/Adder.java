@@ -1,5 +1,7 @@
 package src.addersubtractor;
 
+import addersubtractorlock.Value;
+
 public class Adder implements Runnable {
 
     Value value;

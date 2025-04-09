@@ -1,0 +1,32 @@
+package addersubtractorlock;
+
+import java.util.concurrent.locks.Lock;
+
+public class Subtractor implements Runnable {
+
+    Value value;
+    Lock lockForValue;
+
+    Subtractor(Value value, Lock lockForValue) {
+        this.value = value;
+        this.lockForValue = lockForValue;
+    }
+
+    @Override
+    public void run() {
+        for (int i = 0; i < 100; i++) {
+            try{
+                Thread.sleep(50L);
+
+            } catch (InterruptedException e) {
+
+            }
+
+            lockForValue.lock();
+            int curr = value.getValue();
+            int nxt = curr - i;
+            value.setValue(nxt);
+            lockForValue.unlock();
+        }
+    }
+}
