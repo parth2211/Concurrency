@@ -1,6 +1,19 @@
+package src;
+
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Value {
     private int value = 0;
+    private AtomicInteger atomicValue = new AtomicInteger(0);
     private String valueString = "";
+
+    public void atomicAdd() {
+        atomicValue.incrementAndGet();
+    }
+
+    public void atomicSub() {
+        atomicValue.decrementAndGet();
+    }
 
     public void addValue(int i) {
         value += i;
@@ -19,7 +32,7 @@ public class Value {
     }
 
     public int getValue() {
-        return value;
+        return atomicValue.get();
     }
 
     public void setValue(int i) {

@@ -8,16 +8,16 @@ public class Value {
         value += i;
     }
 
+    public void subtractValue(int i) {
+        value -= i;
+    }
+
     public String getValueString() {
         return valueString;
     }
 
     public void setValueString(String valueString) {
         this.valueString = valueString;
-    }
-
-    public void subtractValue(int i) {
-        value -= i;
     }
 
     public int getValue() {

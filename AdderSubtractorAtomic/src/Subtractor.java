@@ -1,6 +1,5 @@
-import addersubtractorlock.Value;
+package src;
 
-import java.util.concurrent.locks.Lock;
 
 public class Subtractor implements Runnable {
 
@@ -20,9 +19,10 @@ public class Subtractor implements Runnable {
                 System.out.println("Exception");
             }
 
-            int curr = value.getValue();
-            int nxt = curr - 1;
-            value.setValue(nxt);
+//            int curr = value.getValue();
+//            int nxt = curr - 1;
+//            value.setValue(nxt);
+            value.atomicSub();
         }
     }
 }

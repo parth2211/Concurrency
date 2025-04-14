@@ -1,6 +1,4 @@
-import addersubtractorlock.Value;
-
-import java.util.concurrent.locks.Lock;
+package src;
 
 public class Adder implements Runnable {
 
@@ -24,6 +22,8 @@ public class Adder implements Runnable {
 //            int curr = value.getValue();
 //            int nxt = curr + 1;
 //            value.setValue(nxt);
+
+            value.atomicAdd();
         }
     }
 }
