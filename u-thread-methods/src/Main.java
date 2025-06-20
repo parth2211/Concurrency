@@ -20,13 +20,18 @@ public class Main {
         /**
          * 1. Interrupting a Sleeping Thread
          * Write a program where a thread sleeps for 5 seconds, but another thread interrupts it after 2 seconds. Handle the InterruptedException properly.
+         * When an InterruptedException is thrown, the thread's interrupt flag is automatically cleared by the JVM. This means that after the exception is
+         * caught, the isInterrupted() method will return false unless the flag is explicitly restored.
          */
+
         Thread longThread = new Thread(() -> {
             try {
+                System.out.println("Interrupted? " + Thread.currentThread().isInterrupted());
                 TimeUnit.MILLISECONDS.sleep(5000);
             } catch (InterruptedException e) {
                 System.out.println("Interrupted by shortThread");
-                e.printStackTrace();
+                System.out.println("Interrupted? " + Thread.currentThread().isInterrupted() + " & " + Thread.interrupted());
+                System.out.println("Restored? " + Thread.currentThread().isInterrupted());
             }
         },"longThread");
 
